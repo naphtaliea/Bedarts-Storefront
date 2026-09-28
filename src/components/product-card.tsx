@@ -55,14 +55,14 @@ export function ProductCard({ product, onAuthRequired, isLoggedIn }: ProductCard
   return (
     <article className="bg-white rounded-2xl shadow-card flex flex-col overflow-hidden border border-[#C8D4F5] hover:shadow-raised transition-shadow duration-200">
       {/* Image */}
-      <div className="relative aspect-square bg-[#E4ECFF] overflow-hidden">
+      <div className="relative aspect-square bg-white overflow-hidden">
         {product.image_url ? (
           <Image
             src={product.image_url}
             alt={product.name}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-cover"
+            className="object-contain p-2"
             quality={90}
           />
         ) : (
