@@ -38,13 +38,13 @@
 }
 
 /* ── Shadows ─────────────────────────────────────────── */
-@utility shadow-card {
+.shadow-card {
   box-shadow: 0 1px 3px rgba(8,15,58,0.06), 0 2px 12px rgba(8,15,58,0.08);
 }
-@utility shadow-raised {
+.shadow-raised {
   box-shadow: 0 4px 20px rgba(8,15,58,0.12), 0 1px 4px rgba(8,15,58,0.06);
 }
-@utility shadow-float {
+.shadow-float {
   box-shadow: 0 8px 40px rgba(8,15,58,0.18), 0 2px 8px rgba(8,15,58,0.08);
 }
 
@@ -75,7 +75,7 @@ h1, h2, h3 {
 }
 
 /* ── Display utilities ───────────────────────────────── */
-@utility font-display-black {
+.font-display-black {
   font-family: var(--font-big-shoulders), system-ui, sans-serif;
   font-weight: 900;
   letter-spacing: -0.01em;
@@ -86,10 +86,10 @@ h1, h2, h3 {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #8CB0E0; border-radius: 99px; }
 
-@utility no-scrollbar {
+.no-scrollbar {
   scrollbar-width: none;
-  &::-webkit-scrollbar { display: none; }
 }
+.no-scrollbar::-webkit-scrollbar { display: none; }
 
 /* ── Animations ──────────────────────────────────────── */
 @keyframes slide-up {
@@ -109,10 +109,10 @@ h1, h2, h3 {
   to   { transform: translateY(0); }
 }
 
-@utility animate-slide-up   { animation: slide-up   0.22s ease-out both; }
-@utility animate-slide-right { animation: slide-right 0.22s ease-out both; }
-@utility animate-fade-in    { animation: fade-in    0.18s ease-out both; }
-@utility animate-sheet-up   { animation: sheet-up   0.28s cubic-bezier(0.32,0.72,0,1) both; }
+.animate-slide-up   { animation: slide-up   0.22s ease-out both; }
+.animate-slide-right { animation: slide-right 0.22s ease-out both; }
+.animate-fade-in    { animation: fade-in    0.18s ease-out both; }
+.animate-sheet-up   { animation: sheet-up   0.28s cubic-bezier(0.32,0.72,0,1) both; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
