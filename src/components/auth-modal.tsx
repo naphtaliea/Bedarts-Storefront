@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { X, Eye, EyeOff, Loader2 } from "lucide-react";
-import { signIn, signUp } from "@/src/lib/actions/auth";
+import { createClient } from "@/src/lib/supabase/client";
 import { cn } from "@/src/lib/utils";
 
 interface AuthModalProps {
@@ -40,13 +40,18 @@ export function AuthModal({ open, onClose, onSuccess, defaultTab = "signin" }: A
     e.preventDefault();
     setError("");
     setLoading(true);
+    const supabase = createClient();
     try {
       if (tab === "signin") {
-        const res = await signIn(email, password);
-        if (!res.ok) { setError(res.error); return; }
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) { setError(error.message); return; }
       } else {
-        const res = await signUp({ email, password, fullName, phone });
-        if (!res.ok) { setError(res.error); return; }
+        const { data, error } = await supabase.auth.signUp({ email, password });
+        if (error) { setError(error.message); return; }
+        if (!data.user) { setError("Signup failed — please try again."); return; }
+        await supabase
+          .from("customer_profiles")
+          .insert({ id: data.user.id, full_name: fullName, phone: phone || null });
       }
       onSuccess?.();
       onClose();
