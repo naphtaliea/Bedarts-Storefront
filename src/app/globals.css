@@ -1,1 +1,122 @@
 @import "tailwindcss";
+
+@theme inline {
+  /* ── Brand palette — identical to POS ───────────────── */
+  --color-background:           #E4ECFF;
+  --color-foreground:           #080F3A;
+  --color-card:                 #FFFFFF;
+  --color-card-foreground:      #080F3A;
+
+  --color-primary:              #CC1B14;
+  --color-primary-foreground:   #FFFFFF;
+
+  --color-secondary:            #C8D4F5;
+  --color-secondary-foreground: #080F3A;
+
+  --color-muted:                #C8D4F5;
+  --color-muted-foreground:     #566299;
+
+  --color-accent:               #1B50C0;
+  --color-accent-foreground:    #FFFFFF;
+
+  --color-border:               #C8D4F5;
+  --color-input:                #FFFFFF;
+
+  --color-destructive:          #CC1B14;
+  --color-success:              #0D9448;
+  --color-warning:              #C07C00;
+
+  --color-navy:                 #060F40;
+  --color-navy-muted:           #8CB0E0;
+
+  /* ── Geometry ────────────────────────────────────────── */
+  --radius: 0.75rem;
+
+  /* ── Typography ──────────────────────────────────────── */
+  --font-sans:    var(--font-archivo);
+  --font-display: var(--font-big-shoulders);
+}
+
+/* ── Shadows ─────────────────────────────────────────── */
+@utility shadow-card {
+  box-shadow: 0 1px 3px rgba(8,15,58,0.06), 0 2px 12px rgba(8,15,58,0.08);
+}
+@utility shadow-raised {
+  box-shadow: 0 4px 20px rgba(8,15,58,0.12), 0 1px 4px rgba(8,15,58,0.06);
+}
+@utility shadow-float {
+  box-shadow: 0 8px 40px rgba(8,15,58,0.18), 0 2px 8px rgba(8,15,58,0.08);
+}
+
+/* ── Base ────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+button, a, [role="button"], input, select, textarea {
+  touch-action: manipulation;
+}
+
+@media (max-width: 767px) {
+  input, select, textarea { font-size: 16px; }
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  font-weight: 900;
+}
+
+/* ── Display utilities ───────────────────────────────── */
+@utility font-display-black {
+  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+/* ── Scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #8CB0E0; border-radius: 99px; }
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+/* ── Animations ──────────────────────────────────────── */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-right {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes sheet-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+@utility animate-slide-up   { animation: slide-up   0.22s ease-out both; }
+@utility animate-slide-right { animation: slide-right 0.22s ease-out both; }
+@utility animate-fade-in    { animation: fade-in    0.18s ease-out both; }
+@utility animate-sheet-up   { animation: sheet-up   0.28s cubic-bezier(0.32,0.72,0,1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

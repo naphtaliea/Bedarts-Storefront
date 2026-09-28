@@ -17,7 +17,7 @@ interface InitializeOrderResult {
 
 export async function initializeOrder(
   items: CartItem[],
-  delivery: DeliveryDetails,
+  delivery: DeliveryDetails & { fulfillmentType?: "delivery" | "pickup" },
   totalAmount: number
 ): Promise<{ ok: true; data: InitializeOrderResult } | { ok: false; error: string }> {
   if (!items.length) return { ok: false, error: "Cart is empty." };
@@ -44,8 +44,9 @@ export async function initializeOrder(
       total_amount:     totalAmount,
       delivery_name:    delivery.name,
       delivery_phone:   delivery.phone,
-      delivery_address: delivery.address,
+      delivery_address: delivery.fulfillmentType === "pickup" ? null : (delivery.address ?? null),
       delivery_notes:   delivery.notes ?? null,
+      fulfillment_type: delivery.fulfillmentType ?? "delivery",
       paystack_ref:     ref,
     })
     .select("id")

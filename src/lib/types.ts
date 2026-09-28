@@ -28,11 +28,12 @@ export interface OnlineOrder {
   customer_id: string;
   customer?: CustomerProfile;
   status: OrderStatus;
+  fulfillment_type: "delivery" | "pickup";
   paystack_ref: string | null;
   total_amount: number;
   delivery_name: string;
   delivery_phone: string;
-  delivery_address: string;
+  delivery_address: string | null;
   delivery_notes: string | null;
   sale_id: string | null;
   created_at: string;
