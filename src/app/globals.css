@@ -55,7 +55,7 @@ html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-archivo), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
@@ -70,13 +70,13 @@ button, a, [role="button"], input, select, textarea {
 }
 
 h1, h2, h3 {
-  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-big-shoulders), system-ui, sans-serif;
   font-weight: 900;
 }
 
 /* ── Display utilities ───────────────────────────────── */
 @utility font-display-black {
-  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-big-shoulders), system-ui, sans-serif;
   font-weight: 900;
   letter-spacing: -0.01em;
 }
