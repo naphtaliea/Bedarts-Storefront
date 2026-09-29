@@ -32,11 +32,21 @@ function StockBadge({ qty }: { qty: number }) {
   );
 }
 
+const SUPABASE_HOST = process.env.NEXT_PUBLIC_SUPABASE_URL
+  ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname
+  : "supabase.co";
+
+function isSupabaseUrl(url: string | null): boolean {
+  if (!url) return false;
+  try { return new URL(url).hostname.endsWith(SUPABASE_HOST); } catch { return false; }
+}
+
 export function ProductCard({ product, onAuthRequired, isLoggedIn }: ProductCardProps) {
   const { items, add, setQty } = useCart();
   const cartItem = items.find((i) => i.product_id === product.id);
   const qty = cartItem?.quantity ?? 0;
   const outOfStock = product.stock_quantity <= 0;
+  const hasValidImage = isSupabaseUrl(product.image_url);
 
   const unitLabel =
     product.unit === "kg" ? "/kg" : product.unit === "pcs" ? " each" : "";
@@ -56,9 +66,9 @@ export function ProductCard({ product, onAuthRequired, isLoggedIn }: ProductCard
     <article className="bg-white rounded-2xl shadow-card flex flex-col overflow-hidden border border-[#C8D4F5] hover:shadow-raised transition-shadow duration-200">
       {/* Image */}
       <div className="relative aspect-square bg-white overflow-hidden">
-        {product.image_url ? (
+        {hasValidImage ? (
           <Image
-            src={product.image_url}
+            src={product.image_url!}
             alt={product.name}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
