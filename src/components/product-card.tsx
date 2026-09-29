@@ -75,6 +75,13 @@ export function ProductCard({ product, onAuthRequired, isLoggedIn }: ProductCard
             className="object-contain p-2"
             quality={90}
           />
+        ) : product.image_url ? (
+          <img
+            src={product.image_url}
+            alt={product.name}
+            className="w-full h-full object-contain p-2"
+            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+          />
         ) : (
           <div
             className="w-full h-full flex items-center justify-center text-4xl font-display-black select-none"
