@@ -79,7 +79,7 @@ export function ProductCard({ product, onAuthRequired, isLoggedIn }: ProductCard
           <img
             src={product.image_url}
             alt={product.name}
-            className="w-full h-full object-contain p-2"
+            className="w-full h-full object-cover"
             onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
           />
         ) : (
